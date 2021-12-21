@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2f864281.chunk.css",
+    "main.js": "/static/js/main.88022076.chunk.js",
+    "main.js.map": "/static/js/main.88022076.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.38f06a83.js",
+    "runtime-main.js.map": "/static/js/runtime-main.38f06a83.js.map",
+    "static/css/2.ef2319b8.chunk.css": "/static/css/2.ef2319b8.chunk.css",
+    "static/js/2.2d55a600.chunk.js": "/static/js/2.2d55a600.chunk.js",
+    "static/js/2.2d55a600.chunk.js.map": "/static/js/2.2d55a600.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.9bf2559dc3ca922e29fedc1e1edcb8f0.js": "/precache-manifest.9bf2559dc3ca922e29fedc1e1edcb8f0.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ef2319b8.chunk.css.map": "/static/css/2.ef2319b8.chunk.css.map",
+    "static/css/main.2f864281.chunk.css.map": "/static/css/main.2f864281.chunk.css.map",
+    "static/js/2.2d55a600.chunk.js.LICENSE.txt": "/static/js/2.2d55a600.chunk.js.LICENSE.txt",
+    "static/media/haapi.svg": "/static/media/haapi.ec1ec64c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.38f06a83.js",
+    "static/css/2.ef2319b8.chunk.css",
+    "static/js/2.2d55a600.chunk.js",
+    "static/css/main.2f864281.chunk.css",
+    "static/js/main.88022076.chunk.js"
+  ]
+}
