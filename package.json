@@ -10,6 +10,7 @@
     "drei": "0.0.63",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-loading-screen": "^0.0.17",
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
     "react-three-fiber": "^4.2.17",

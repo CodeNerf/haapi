@@ -6,6 +6,9 @@ import { Canvas, useFrame, useLoader } from "react-three-fiber";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import logo from "./haapi.svg"
+import LoadingScreen from 'react-loading-screen'
+
+
 
 
 let FrontRightLatch;
@@ -15,11 +18,12 @@ let RearLeftLatch;
 let trunkLatchStatus;
 
 
+
 function reqUnlock () {
   
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqUnlock);
-  oReq.open("GET", "http://sla.canbushack.com:5000/command/Unlock");
+  oReq.open("GET", "http://live.canbushack.com:5000/command/Unlock");
   oReq.send();
   
 
@@ -28,7 +32,7 @@ function reqUnlock () {
 function reqLock () {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqLock);
-  oReq.open("GET", "http://sla.canbushack.com:5000/command/Lock");
+  oReq.open("GET", "https://live.canbushack.com:5000/command/Lock");
   oReq.send();
 
 }
@@ -37,7 +41,7 @@ function reqLock () {
 function reqStart () {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqStart);
-  oReq.open("GET", "http://sla.canbushack.com:5000/command/Start Vehicle");
+  oReq.open("GET", "https://live.canbushack.com:5000/command/Start Vehicle");
   oReq.send();
 
 }
@@ -45,7 +49,7 @@ function reqStart () {
 function reqTrunk () {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqTrunk);
-  oReq.open("GET", "http://sla.canbushack.com:5000/command/Trunk");
+  oReq.open("GET", "https://live.canbushack.com/command/Trunk");
   oReq.send();
 
 }
@@ -99,7 +103,7 @@ function Tesla() {
       partB = mixer.clipAction(clipB)
       if(RearRightLatch === "LATCH_OPENED"){
         partB.paused = false;
-        partB.timeScale = 1;
+        partB.timeScale = -1;
         partB.setLoop(THREE.LoopOnce);
         partB.clampWhenFinished = true;
         partB.play()
@@ -187,10 +191,19 @@ function Scene() {
 }
 
 
+
+
+  
+
+
+
+
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  
   
   useEffect(() => {
     
@@ -200,8 +213,8 @@ function App() {
     
 
     Promise.all([
-      fetch('http://live.canbushack.com/db_get/259/'), // Right Side Doors
-      fetch('http://live.canbushack.com/db_get/258/') // Left Side Doors
+      fetch('http://live.canbushack.com:5000/db_get/259/'), // Right Side Doors
+      fetch('http://live.canbushack.com:5000/db_get/258/') // Left Side Doors
 
       
       
@@ -240,14 +253,40 @@ function App() {
   
     return () => clearInterval(interval);
     }, []);
-    if (loading) return "Application Loading...";
-    if (error) return "Error!";
+    if (loading) return <LoadingScreen
+    loading={loading}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    text='Haapi is connecting to our servers'
+  >
+    {/* <div style={{ textAlign: 'center' }}>
+      <h1>react-screen-loading</h1>
+      <p>Example of usage loading-screen, based on React</p>
+      
+    </div> */}
+  </LoadingScreen>;
+
+    if (error) return <LoadingScreen
+    loading={loading}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    text='Failed to connect to server'
+  >
+    {/* <div style={{ textAlign: 'center' }}>
+      <h1>react-screen-loading</h1>
+      <p>Example of usage loading-screen, based on React</p>
+      
+    </div> */}
+  </LoadingScreen>;
 
     
-  
 
  return (
-    <>
+
+<>
+    
     
     <img src={logo} className="App-logo" alt="logo" />
 
@@ -264,16 +303,13 @@ function App() {
           near: 0.5,
           far: 2000,
           fov: 25,
-
-         
-         
         }}
         >
    
-       
+   
         <Scene />
       </Canvas>
-
+      
     
      </>
   );
