@@ -23,7 +23,7 @@ function reqUnlock () {
   
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqUnlock);
-  oReq.open("GET", "http://live.canbushack.com:5000/command/Unlock");
+  oReq.open("GET", "http://live.canbushack.com/command/Unlock");
   oReq.send();
   
 
@@ -32,7 +32,7 @@ function reqUnlock () {
 function reqLock () {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqLock);
-  oReq.open("GET", "https://live.canbushack.com:5000/command/Lock");
+  oReq.open("GET", "http://live.canbushack.com/command/Lock");
   oReq.send();
 
 }
@@ -41,7 +41,7 @@ function reqLock () {
 function reqStart () {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqStart);
-  oReq.open("GET", "https://live.canbushack.com:5000/command/Start Vehicle");
+  oReq.open("GET", "http://live.canbushack.com/command/Start Vehicle");
   oReq.send();
 
 }
@@ -49,7 +49,7 @@ function reqStart () {
 function reqTrunk () {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", reqTrunk);
-  oReq.open("GET", "https://live.canbushack.com/command/Trunk");
+  oReq.open("GET", "http://live.canbushack.com/command/Trunk");
   oReq.send();
 
 }
@@ -179,11 +179,12 @@ function Scene() {
       <ambientLight />
       <pointLight intensity={0.6} position={[0, 10, 4]} />
       <Suspense fallback={null}>
-      
+       
         <Tesla />
         
       </Suspense>
-      <OrbitControls />
+      <OrbitControls autoRotate = {[true]} />
+      
 
       
     </>
@@ -213,8 +214,8 @@ function App() {
     
 
     Promise.all([
-      fetch('http://live.canbushack.com:5000/db_get/259/'), // Right Side Doors
-      fetch('http://live.canbushack.com:5000/db_get/258/') // Left Side Doors
+      fetch('http://live.canbushack.com/db_get/259/'), // Right Side Doors
+      fetch('http://live.canbushack.com/db_get/258/') // Left Side Doors
 
       
       
@@ -303,6 +304,7 @@ function App() {
           near: 0.5,
           far: 2000,
           fov: 25,
+          autoRotate: true
         }}
         >
    
